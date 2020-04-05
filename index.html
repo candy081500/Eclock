@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#myCanvas{
+		border:1px solid #ff0000;
+	}
+	</style>
+</head>
+<body>
+
+<canvas id='myCanvas'></canvas>
+
+<script>
+var myCanvas = document.getElementById('myCanvas');
+myCanvas.width = 1000;
+myCanvas.height = 700;
+var cvs = myCanvas.getContext("2d");
+
+
+function timer(){
+
+var x = 200,
+	y = 200,
+	r = 200,
+	date = new Date(),
+	hours = date.getHours(),
+	minutes = date.getMinutes(),
+	seconds = date.getSeconds();
+
+var H = (-90 + hours*30 + minutes/2)*Math.PI/180;
+var M = (-90 + minutes*6)*Math.PI/180;
+var S = (-90 + seconds*6)*Math.PI/180;
+
+cvs.beginPath();
+cvs.arc(x,y,r,0,360*Math.PI/180);
+cvs.fillStyle="#Fcf";
+cvs.fill();
+cvs.strokeStyle="#fff";
+cvs.stroke();
+
+cvs.beginPath();
+for(var i=0;i<60;i++){
+
+	cvs.moveTo(x,y);
+	cvs.arc(x,y,r,i*6*Math.PI/180,(i+1)*6*Math.PI/180);
+
+}
+cvs.strokeStyle="#fff";
+cvs.stroke();
+
+
+cvs.beginPath();
+cvs.arc(x,y,r*(19/20),0,2*Math.PI);
+cvs.fillStyle="#ccc";
+cvs.fill();
+cvs.strokeStyle="#00f";
+cvs.stroke();
+
+
+cvs.beginPath();
+for(var i=0;i<12;i++){
+
+	cvs.moveTo(x,y);
+	cvs.arc(x,y,r,i*30*Math.PI/180,(i+1)*30*Math.PI/180);
+
+}
+cvs.lineWidth = 3;
+cvs.strokeStyle="#000";
+cvs.stroke();
+
+
+cvs.beginPath();
+cvs.arc(x,y,r*(18/20),0,2*Math.PI);
+cvs.fillStyle="#bff";
+cvs.fill();
+cvs.strokeStyle="#ff0";
+cvs.stroke();
+
+
+
+
+
+//时针
+cvs.beginPath();
+cvs.moveTo(x,y);
+cvs.arc(x,y,r*(8/20),H,H);
+cvs.lineWidth = 7;
+cvs.strokeStyle="#000";
+cvs.stroke();
+
+
+//分针
+cvs.beginPath();
+cvs.moveTo(x,y);
+cvs.arc(x,y,r*(13/20),M,M);
+cvs.lineWidth = 4;
+cvs.strokeStyle="#000";
+cvs.stroke();
+
+
+//秒针
+cvs.beginPath();
+cvs.moveTo(x,y);
+cvs.arc(x,y,r*(17/20),S,S);
+cvs.lineWidth = 1;
+cvs.strokeStyle="#000";
+cvs.stroke();
+
+}
+timer();
+setInterval(timer,1000);
+</script>
+
+</body>
+</html>
